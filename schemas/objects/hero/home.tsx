@@ -24,20 +24,34 @@ export default defineField({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'array',
-      validation: (Rule) => Rule.max(1),
-      of: [
-        {
-          name: 'productWithVariant',
-          title: 'Product with variant',
-          type: 'productWithVariant',
-        },
-        {
-          name: 'imageWithProductHotspots',
-          title: 'Image',
-          type: 'imageWithProductHotspots',
-        },
-      ],
-    }),
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'items',
+          title: 'Items',
+          type: 'array',
+          validation: (Rule) => Rule.max(1),
+          of: [
+            {
+              name: 'productWithVariant',
+              title: 'Product with variant',
+              type: 'productWithVariant',
+            },
+            {
+              name: 'imageWithProductHotspots',
+              title: 'Image',
+              type: 'imageWithProductHotspots',
+            },
+          ]
+        }),
+        defineField({
+          name: 'aboutSection',
+          title: 'About Section',
+          type: 'text',
+          rows: 10,
+          validation: (Rule) => Rule.max(1500)
+        })
+      ]
+    })
   ],
 })
